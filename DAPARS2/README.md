@@ -1,6 +1,6 @@
 
 
-
+python src/DaPars_Extract_Anno.py -b DATA/hg38_wholeGene_annotation.bed -s DATA/hg38_refseq_IDmapping.txt -o OUTPUT/hg38_3UTR_annotation.bed
 
 python src/DaPars_Extract_Anno.py -b DATA/hg38_wholeGene_annotation.bed -s DATA/hg38_refseq_IDmapping.txt -o OUTPUT/hg38_3UTR_annotation.bed
 
@@ -12,7 +12,7 @@ python src/DaPars_Extract_Anno.py -b DATA/hg38_wholeGene_annotation.bed -s DATA/
 
 
 
-
+0
 
 
 

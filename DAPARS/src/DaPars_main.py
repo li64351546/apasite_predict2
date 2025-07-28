@@ -152,6 +152,7 @@ def De_Novo_3UTR_Identification_Loading_Target_Wig_for_TCGA_Multiple_Samples_Mai
     All_samples_Target_3UTR_coverages, All_samples_sequencing_depths, UTR_events_dict = Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file)
     All_sample_coverage_weights = All_samples_sequencing_depths/np.mean(All_samples_sequencing_depths)
     print("[%s] Loading coverage finished ..." % time_now(), file=sys.stderr)
+    
     ##Write the first line
     first_line = ['Gene','fit_value','Predicted_Proximal_APA','Loci']
     for i in range(num_group_1):
