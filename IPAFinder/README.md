@@ -1,10 +1,35 @@
-# IPAFinder
+## 生成包含内含子和外显子信息的注释文件
+python IPAFinder_GetAnno.py -gtf /path/to/hg38refGene.gtf -output /path/to/IPAFinder_anno_hg38.txt
 
 
 
-## Description
 
-IPAFinder performs *de novo* identification and quantification of IPA events using standard RNA-seq data based on "change point" model, which has been widely used for tandem 3' UTR APA analysis. IPAFinder could exclude the interference of alternative splicing events such as alternative 5' splice site and cryptic exon activation by recognizing junction-spanning reads.
+
+## 检测和量化 IPA 位点，并计算所有外显子的读取计数
+python IPAFinder_DetectIPA.py -b /path/to/allbamfiles.txt -anno /path/to/IPAFinder_anno_hg38.txt -p 10 -o /path/to/IPAFinder_IPUI.txt
+```
+
+allbamfiles.txt contains all filename of bamfile between two conditions, as shown below:
+
+```
+condition1=/path/to/ctrl1.bam,/path/to/ctrl2.bam 
+condition2=/path/to/case1.bam,/path/to/case2.bam
+
+
+
+
+
+
+
+
+
+## IPAFinder 使用基于“变化点”模型的标准 RNA-seq 数据对 IPA 事件进行*从头*识别和量化，该模型已广泛用于串联 3' UTR APA 分析。
+IPAFinder performs *de novo* identification and quantification of IPA events using standard RNA-seq data based on "change point" model, which has been widely used for tandem 3' UTR APA analysis. 
+
+
+
+## IPAFinder 可以通过识别连接跨越读数来排除选择性剪接事件的干扰，例如替代性 5' 剪接位点和隐性外显子激活。
+IPAFinder could exclude the interference of alternative splicing events such as alternative 5' splice site and cryptic exon activation by recognizing junction-spanning reads.
 
 
 
@@ -30,11 +55,6 @@ IPAFinder consists of both Python (3.5+) and R scripts:
 
 
 
-1.```IPAFinder_GetAnno.py```: Generate annotation file containing intron and exon information
-
-2.```IPAFinder_DetectIPA.py```: Detect and quantify IPA sites, and calculate read counts of all exons
-
-3.```Infer_DUIPA.R```: Infer differential usage of IPA sites
 
 
 
@@ -45,11 +65,9 @@ RefSeq GTF file could be downloaded from the UCSC website: https://genome.ucsc.e
 
 The UCSC tool ```gtfToGenePred``` is required here.
 
-**Command**
 
-```
 python IPAFinder_GetAnno.py -gtf /path/to/hg38refGene.gtf -output /path/to/IPAFinder_anno_hg38.txt
-```
+
 
 **We have generated annotation file for hg19, hg38 and mm10, and we suggest users utilize it directly.**
 
@@ -92,9 +110,10 @@ project/
 
 DEXSeq, the model for differential exon usage analysis based on standard RNA-seq data, was applied to detect differential usage of IPA terminal exon. This statistical framework could account for biological variability between replicates and is robust to changes in isoform abundance between conditions.
 
-**Command**
 
-```
+ ```Infer_DUIPA.R```: Infer differential usage of IPA sites
+
+
 Rscript Infer_DUIPA.R -b /path/to/allbamfiles.txt -I /path/to/IPAFinder_IPUI.txt -d /path/to/project -o /path/to/IPAFinder_DUIPA.txt
 ```
 
