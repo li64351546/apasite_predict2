@@ -34,6 +34,7 @@ def Annotation_prepar_3UTR_extraction(gene_bed_file, gene_symbol_map_kfXref_file
             
             UTR_id = [refseq_id, gene_symbol,fields[0], fields[5]]
             UTR_id_new = '|'.join(UTR_id)
+
             curr_strand = fields[5]
             if curr_strand == "+":
                 UTR_end = fields[2]
@@ -75,8 +76,14 @@ def Subtract_different_strand_overlap(input_gene_bed_file,output_utr_file):
             selected_UTR_index = all_pos.index(max(all_pos))
             selected_UTR = UTRs_all[selected_UTR_index]
         return selected_UTR
+
+
     temp_file = "overlap_opposite_strand_subtract.bed"
     cmd = 'subtractBed -a %s -b %s -S > %s' % (input_gene_bed_file, input_gene_bed_file, temp_file)
+
+    print('cmd',cmd)
+
+
     os.system(cmd)
     
     read_subtract_result_dict = {}
@@ -102,6 +109,8 @@ def Subtract_different_strand_overlap(input_gene_bed_file,output_utr_file):
     except OSError:
         pass
 
+
+#Subtract_different_strand_overlap
 def Extract_Anno_main(argv):
     gene_bed_file = ''
     gene_symbol_annotation_file = ''

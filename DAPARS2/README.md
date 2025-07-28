@@ -1,3 +1,28 @@
+
+
+
+
+python src/DaPars_Extract_Anno.py -b DATA/hg38_wholeGene_annotation.bed -s DATA/hg38_refseq_IDmapping.txt -o OUTPUT/hg38_3UTR_annotation.bed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [![Github Release](https://img.shields.io/badge/release-v2.1-brightgreen)](https://github.com/3UTR/DaPars2)
 [![python Release](https://img.shields.io/badge/python-3.8-brightgreen)](https://www.python.org/downloads/)
 [![numpy Release](https://img.shields.io/badge/numpy-1.22-brightgreen)](https://numpy.org/)

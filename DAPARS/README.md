@@ -1,11 +1,17 @@
 
 
 
-python src/DaPars_Extract_Anno.py  DATA/hg19_refseq_extracted_3UTR.bed -o DATA/123.bed
+python src/DaPars_Extract_Anno.py -b DATA/hg19_refseq_extracted_3UTR.bed -s /home/li/桌面/PROJECT6/apasite_predict2/DAPARS2/DATA/hg38_refseq_IDmapping.txt  -o DATA/123.bed
+
 python DaPars_Extract_Anno.py -b INPUT BED FILE -s ANNOTATION FILE -o OUTPUT BED FILE
 
 
+
+
+
+
 python src/DaPars_main.py DATA/DaPars_test_data_configure.txt
+
 python DaPars_main.py CONFIGURATION FILE
 
 
