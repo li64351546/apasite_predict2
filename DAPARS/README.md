@@ -1,14 +1,34 @@
-DaPars(Dynamic analysis of Alternative PolyAdenylation from RNA-seq)
-======
 
 
-   
-**Current version**: 1.0.0
+
+python src/DaPars_Extract_Anno.py  DATA/hg19_refseq_extracted_3UTR.bed -o DATA/123.bed
+python DaPars_Extract_Anno.py -b INPUT BED FILE -s ANNOTATION FILE -o OUTPUT BED FILE
+
+
+python src/DaPars_main.py DATA/DaPars_test_data_configure.txt
+python DaPars_main.py CONFIGURATION FILE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAPARS/src/DaPars_Extract_Anno.py
 
 [**Full Documentations**](http://xiazlab.org/dapars_tutorial/html/DaPars.html)
 Description
 -----
-The dynamic usage of the 3’untranslated region (3’UTR) resulting from alternative polyadenylation (APA) is emerging as a pervasive mechanism for regulating mRNA diversity, stability and translation. Though RNA-seq provides the whole-transcriptome information and a lot of tools for analyzing gene/isoform expression are available, very few tool focus on the analysis of 3'UTR from standard RNA-seq. DaPars is the first de novo tool that directly infers the dynamic alternative polyadenylation (APA) usage by comparing standard RNA-seq. Given the annotated gene model, DaPars can infer the de novo proximal APA sites as well as the long and short 3'UTR expression levels. Finally, the dynamic APA usages between two conditions will be identified.
+The dynamic usage of the 3’untranslated region (3’UTR) resulting from alternative polyadenylation (APA) is emerging as a pervasive mechanism for regulating mRNA diversity, stability and translation. 
+
+Though RNA-seq provides the whole-transcriptome information and a lot of tools for analyzing gene/isoform expression are available, very few tool focus on the analysis of 3'UTR from standard RNA-seq. DaPars is the first de novo tool that directly infers the dynamic alternative polyadenylation (APA) usage by comparing standard RNA-seq. Given the annotated gene model, DaPars can infer the de novo proximal APA sites as well as the long and short 3'UTR expression levels. Finally, the dynamic APA usages between two conditions will be identified.
 
 
 
@@ -23,13 +43,7 @@ The dynamic usage of the 3’untranslated region (3’UTR) resulting from altern
    2. Removed rpy2 and use python for the statistical test
    3. Fixed some minor bugs.
 
-Citation
------
-*Please cite the following articles if you use DaPars in your research*:
 
-* Xia, Z., Donehower, L.A., Wheeler, D.A., Cooper, T.A., Neilson, J.R., Wagner E.J., Li, W. 2014. Dynamic Analyses of Alternative Polyadenylation from RNA-Seq Reveal 3'-UTR Landscape Across 7 Tumor Types. Nature Communications, 5:5274.
-
-* Masamha, C.P., Xia, Z., Yang, J., Albrecht, T.R., Li, M., Shyu, A., Li, W., Wagner, E.J. 2014. CFIm25 links Alternative Polyadenylation to Glioblastoma Tumor Suppression. Nature, 510:412-416.
 
 
 Mailing list

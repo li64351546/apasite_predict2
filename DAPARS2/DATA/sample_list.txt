@@ -1,0 +1,2 @@
+sample_1	./sample_1.bam
+sample_2	./sample_2.bam

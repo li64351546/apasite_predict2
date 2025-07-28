@@ -1,0 +1,2 @@
+sample_1.wig	883006
+sample_2.wig	826064

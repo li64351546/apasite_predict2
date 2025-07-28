@@ -26,18 +26,9 @@ IPAFinder consists of both Python (3.5+) and R scripts:
 
    ii. R (required packages optparse, dplyr, stringr, and DEXSeq)
 
-2. Clone the lastest development version of IPAFinder and change directory:
-
- ```
-  git clone https://github.com/ZhaozzReal/IPAFinder.git
-  cd IPAFinder
- ```
 
 
 
-## Usage 
-
-IPAFinder has three sub-commands:
 
 1.```IPAFinder_GetAnno.py```: Generate annotation file containing intron and exon information
 
@@ -48,6 +39,7 @@ IPAFinder has three sub-commands:
 
 
 ## Generate specialized annotation file
+## 生成专用注释文件
 
 RefSeq GTF file could be downloaded from the UCSC website: https://genome.ucsc.edu/.
 
@@ -63,9 +55,14 @@ python IPAFinder_GetAnno.py -gtf /path/to/hg38refGene.gtf -output /path/to/IPAFi
 
 
 
+
+
+
+
+
+## 检测 IPA 位点并量化其使用情况
 ## Detect IPA sites and quantify their usage
 
-**Command** 
 
 ```
 python IPAFinder_DetectIPA.py -b /path/to/allbamfiles.txt -anno /path/to/IPAFinder_anno_hg38.txt -p 10 -o /path/to/IPAFinder_IPUI.txt
@@ -90,6 +87,7 @@ project/
 
 
 
+## 推断 IPA 站点的统计差异使用情况
 ## Infer statistically differential usage of IPA sites
 
 DEXSeq, the model for differential exon usage analysis based on standard RNA-seq data, was applied to detect differential usage of IPA terminal exon. This statistical framework could account for biological variability between replicates and is robust to changes in isoform abundance between conditions.
