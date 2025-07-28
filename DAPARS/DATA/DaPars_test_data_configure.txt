@@ -1,6 +1,6 @@
-Annotated_3UTR=hg19_refseq_extracted_3UTR.bed
-Group1_Tophat_aligned_Wig=Condition_A_chrX.wig
-Group2_Tophat_aligned_Wig=Condition_B_chrX.wig
+Annotated_3UTR=DATA/hg19_refseq_extracted_3UTR.bed
+Group1_Tophat_aligned_Wig=DATA/Condition_A_chrX.wig
+Group2_Tophat_aligned_Wig=DATA/Condition_B_chrX.wig
 Output_directory=DaPars_Test_data/
 Output_result_file=DaPars_Test_data
 
