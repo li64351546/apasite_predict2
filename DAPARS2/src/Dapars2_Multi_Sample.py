@@ -133,6 +133,8 @@ def De_Novo_3UTR_Identification_Loading_Target_Wig_for_TCGA_Multiple_Samples_Mul
 
     #print All_sample_coverage_weights
     print("[%s] Loading Coverage Finished ..." % time_now(), file=sys.stderr)
+
+    
     #Write the first line
     first_line = ['Gene','fit_value','Predicted_Proximal_APA','Loci']
     for i in range(num_samples):

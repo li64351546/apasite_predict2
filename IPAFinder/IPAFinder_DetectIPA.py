@@ -360,6 +360,7 @@ def output_exoncount(all_bamfiles,result_list):
 
 
 bamfiles_condition1,bamfiles_condition2 = parse_cfgfile(args.bamfiles)
+
 all_bamfiles = bamfiles_condition1 + bamfiles_condition2
 num_condition1 = len(bamfiles_condition1)
 pool = Pool(args.processors)

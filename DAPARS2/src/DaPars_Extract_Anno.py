@@ -80,10 +80,7 @@ def Subtract_different_strand_overlap(input_gene_bed_file,output_utr_file):
 
     temp_file = "overlap_opposite_strand_subtract.bed"
     cmd = 'subtractBed -a %s -b %s -S > %s' % (input_gene_bed_file, input_gene_bed_file, temp_file)
-
     print('cmd',cmd)
-
-
     os.system(cmd)
     
     read_subtract_result_dict = {}

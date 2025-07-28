@@ -1,0 +1,1 @@
+Gene	fit_value	Predicted_Proximal_APA	Loci	A_1_long_exp	A_1_short_exp	A_1_PDUI	B_1_long_exp	B_1_short_exp	B_1_PDUI	PDUI_Group_diff	PDUI_Group_diff
