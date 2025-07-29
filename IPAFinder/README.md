@@ -22,7 +22,7 @@ condition1=/path/to/ctrl1.bam,/path/to/ctrl2.bam
 
 
 
-## IPAFinder 使用基于“变化点”模型的标准 RNA-seq 数据对 IPA 事件进行*从头*识别和量化，该模型已广泛用于串联 3' UTR APA 分析。
+## IPAFinder 使用基于“变化点”模型的标准 RNA-seq 数据对 IPA 事件进行从头识别和量化，该模型已广泛用于串联 3' UTR APA 分析。
 IPAFinder performs *de novo* identification and quantification of IPA events using standard RNA-seq data based on "change point" model, which has been widely used for tandem 3' UTR APA analysis. 
 
 

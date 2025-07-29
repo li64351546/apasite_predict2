@@ -382,6 +382,7 @@ def De_Novo_3UTR_Coverage_estimation_Genome_for_TCGA_multiple_samples(All_Sample
     Region_Coverages = []
     Region_mean_Coverages = []
     Region_first_100_coverage_all_samples = []
+
     for i in range(num_samples):
         curr_Region_Coverage_raw = All_Samples_curr_3UTR_coverages[i]##strand is reversed in load
         curr_Region_Coverage = curr_Region_Coverage_raw/weight_for_second_coverage[i]
@@ -389,6 +390,7 @@ def De_Novo_3UTR_Coverage_estimation_Genome_for_TCGA_multiple_samples(All_Sample
         Region_Coverages.append(curr_Region_Coverage)
         curr_first_100_coverage = np.mean(curr_Region_Coverage_raw[0:99])
         Region_first_100_coverage_all_samples.append(curr_first_100_coverage)
+
     if sum(np.array(Region_first_100_coverage_all_samples) >= coverage_threshold) >= num_samples and UTR_end - UTR_start >= 150:
         if curr_strand == "+":
             search_region = list(range(UTR_start+search_point_start, UTR_end-search_point_end+1))
@@ -399,9 +401,11 @@ def De_Novo_3UTR_Coverage_estimation_Genome_for_TCGA_multiple_samples(All_Sample
         search_region_end   = UTR_end - UTR_start - search_point_end
         Mean_squared_error_list  = []
         Estimated_3UTR_abundance_list = []
+
         for curr_point in range(search_region_start, search_region_end+1):
             curr_search_point = curr_point
             All_samples_result = [[],[],[]]
+
             for curr_sample_region_coverage in Region_Coverages:
                 Mean_Squared_error,Long_UTR_abun,Short_UTR_abun = Estimation_abundance(curr_sample_region_coverage, curr_search_point)
                 All_samples_result[0].append(Mean_Squared_error)
@@ -502,7 +506,7 @@ def Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file):
         for curr_3UTR_event_id in UTR_events_dict:
             curr_3UTR_structure = UTR_events_dict[curr_3UTR_event_id]
             curr_chr = curr_3UTR_structure[0]
-            
+
             if curr_chr in curr_sample_All_chroms_coverage_dict:
                 curr_chr_coverage = curr_sample_All_chroms_coverage_dict[curr_chr]
                 region_start = curr_3UTR_structure[1]
@@ -514,6 +518,7 @@ def Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file):
                 extracted_3UTR_region = curr_chr_coverage[0][left_region_index:right_region_index]
                 extracted_3UTR_region.insert(0,region_start)
                 extracted_3UTR_region.append(region_end)
+                
                 if curr_3UTR_event_id not in All_samples_extracted_3UTR_coverage_dict:
                     All_samples_extracted_3UTR_coverage_dict[curr_3UTR_event_id] = []
                 All_samples_extracted_3UTR_coverage_dict[curr_3UTR_event_id].append([extracted_coverage,extracted_3UTR_region])
