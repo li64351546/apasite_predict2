@@ -144,16 +144,8 @@ def De_Novo_3UTR_Identification_Loading_Target_Wig_for_TCGA_Multiple_Samples_Mai
         os.makedirs(temp_dir)
     Output_all_prediction_file = output_directory+Output_result_file+'_result_temp.txt'
     Output_result = open(Output_all_prediction_file, 'w')
-    
-    num_samples = len(All_Sample_files)
-    
-    ##Debug
-    print("[%s] Loading coverage ..." % time_now(), file=sys.stderr)
-    All_samples_Target_3UTR_coverages, All_samples_sequencing_depths, UTR_events_dict = Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file)
-    All_sample_coverage_weights = All_samples_sequencing_depths/np.mean(All_samples_sequencing_depths)
-    print("[%s] Loading coverage finished ..." % time_now(), file=sys.stderr)
-    
     ##Write the first line
+    num_samples = len(All_Sample_files)
     first_line = ['Gene','fit_value','Predicted_Proximal_APA','Loci']
     for i in range(num_group_1):
         curr_long_exp = 'A_%s_long_exp' % str(i+1)
@@ -169,6 +161,17 @@ def De_Novo_3UTR_Identification_Loading_Target_Wig_for_TCGA_Multiple_Samples_Mai
     
     Output_result.writelines('\t'.join(first_line) + '\n')
     
+
+
+
+    
+    ##Debug
+    print("[%s] Loading coverage ..." % time_now(), file=sys.stderr)
+    All_samples_Target_3UTR_coverages, All_samples_sequencing_depths, UTR_events_dict = Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file)
+    All_sample_coverage_weights = All_samples_sequencing_depths/np.mean(All_samples_sequencing_depths)
+    print("[%s] Loading coverage finished ..." % time_now(), file=sys.stderr)
+    
+
     
     for curr_3UTR_id in UTR_events_dict:
         curr_3UTR_structure = UTR_events_dict[curr_3UTR_id]
@@ -176,6 +179,7 @@ def De_Novo_3UTR_Identification_Loading_Target_Wig_for_TCGA_Multiple_Samples_Mai
         region_end   = curr_3UTR_structure[2]
         curr_strand  = curr_3UTR_structure[-2]
         UTR_pos = curr_3UTR_structure[-1]
+
         if curr_3UTR_id in All_samples_Target_3UTR_coverages:
             curr_3UTR_coverage_wig = All_samples_Target_3UTR_coverages[curr_3UTR_id]
             curr_3UTR_all_samples_bp_coverage = []
@@ -365,8 +369,9 @@ def De_Novo_3UTR_Coverage_estimation_Genome_for_TCGA_multiple_samples(All_Sample
     '''For UTR-APA new
        Load one chromosome by chromosome
        Just for TCGA data analysis. So no peak evenness checking
-       Jan-17-2013
-       2-28-2013
+       对于 UTR-APA 新
+逐条加载一条染色体
+仅用于 TCGA 数据分析。因此无需峰均匀度检查
     '''
     coverage_threshold = 20
     search_point_start     = 200
@@ -442,8 +447,11 @@ def Estimation_abundance(Region_Coverage, break_point):
 
     
 def Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file):
+
     UTR_events_dict = {}
     All_Samples_Total_depth = []
+
+
     for line in open(Annotated_3UTR_file,'r'):
         fields = line.strip('\n').split('\t')
         curr_chr = fields[0]
@@ -480,6 +488,7 @@ def Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file):
                 cur_sample_total_depth += int(float(fields[-1])) * (region_end - region_start)
                 if chrom_name not in curr_sample_All_chroms_coverage_dict:
                     curr_sample_All_chroms_coverage_dict[chrom_name] = [[0],[0]]
+
                 if region_start > curr_sample_All_chroms_coverage_dict[chrom_name][0][-1]:
                     curr_sample_All_chroms_coverage_dict[chrom_name][0].append(region_start)
                     curr_sample_All_chroms_coverage_dict[chrom_name][1].append(0)
@@ -489,9 +498,11 @@ def Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file):
         curr_sample_All_chroms_coverage_dict[chrom_name][1].append(0)
         All_Samples_Total_depth.append(cur_sample_total_depth)
 
+
         for curr_3UTR_event_id in UTR_events_dict:
             curr_3UTR_structure = UTR_events_dict[curr_3UTR_event_id]
             curr_chr = curr_3UTR_structure[0]
+            
             if curr_chr in curr_sample_All_chroms_coverage_dict:
                 curr_chr_coverage = curr_sample_All_chroms_coverage_dict[curr_chr]
                 region_start = curr_3UTR_structure[1]
@@ -506,6 +517,9 @@ def Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file):
                 if curr_3UTR_event_id not in All_samples_extracted_3UTR_coverage_dict:
                     All_samples_extracted_3UTR_coverage_dict[curr_3UTR_event_id] = []
                 All_samples_extracted_3UTR_coverage_dict[curr_3UTR_event_id].append([extracted_coverage,extracted_3UTR_region])
+
+
+
     return All_samples_extracted_3UTR_coverage_dict,np.array(All_Samples_Total_depth),UTR_events_dict
 
 
