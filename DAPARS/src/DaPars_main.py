@@ -236,31 +236,7 @@ def De_Novo_3UTR_Identification_Loading_Target_Wig_for_TCGA_Multiple_Samples_Mai
 
 #def DaPars_Filtering_debug():
 def DaPars_Filtering(input_file, num_samples,num_group1 ,output_file):
-    
-    #cfg_file = 'CFIm25_Configure.txt'
-    #Group1_Tophat_aligned_file,Group2_Tophat_aligned_file,output_directory,Annotated_3UTR_file,Output_result_file,Num_least_in_group1_local,Num_least_in_group2_local,Coverage_cutoff_local,FDR_cutoff_local,Fold_change_cutoff_local,PDUI_cutoff_local = parse_cfgfile(cfg_file)
-    
-    #input_file = 'CFIm25_KD_vs_Control_3UTR_All_prediction.txt'
-    #input_file = 'Wagner_3UTR_New_Nov_5_2012_All_prediction.txt'
-    #output_file = 'filtered.txt'
-    #num_samples = 2
-    #num_group1 = 1
-    
-    
-    
-#     if FDR_cutoff_local != '':
-#         global FDR_cutoff
-#         FDR_cutoff = FDR_cutoff_local
-#         print FDR_cutoff
-#     if PDUI_cutoff_local != '':
-#         global PDUI_cutoff
-#         PDUI_cutoff = PDUI_cutoff_local
-#         print PDUI_cutoff
-    
-    
-    
-    
-    
+
     output_write = open(output_file,'w')
     num_line = 0
     
@@ -465,15 +441,16 @@ def Estimation_abundance(Region_Coverage, break_point):
 
 
     
-def Load_Target_Wig_files(All_Wig_files, UTR_Annotation_file):
+def Load_Target_Wig_files(All_Wig_files, Annotated_3UTR_file):
     UTR_events_dict = {}
     All_Samples_Total_depth = []
-    for line in open(UTR_Annotation_file,'r'):
+    for line in open(Annotated_3UTR_file,'r'):
         fields = line.strip('\n').split('\t')
         curr_chr = fields[0]
         region_start = int(float(fields[1]))
         region_end   = int(float(fields[2]))
         curr_strand  = fields[-1]
+
         UTR_pos = "%s:%s-%s" % (curr_chr, region_start, region_end)
         end_shift = int(round(abs(int(region_start) - int(region_end)) * 0.2))
         if curr_strand == '+':
