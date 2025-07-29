@@ -7,14 +7,13 @@ python IPAFinder_GetAnno.py -gtf /path/to/hg38refGene.gtf -output /path/to/IPAFi
 
 ## 检测和量化 IPA 位点，并计算所有外显子的读取计数
 python IPAFinder_DetectIPA.py -b /path/to/allbamfiles.txt -anno /path/to/IPAFinder_anno_hg38.txt -p 10 -o /path/to/IPAFinder_IPUI.txt
-```
 
+```
 allbamfiles.txt contains all filename of bamfile between two conditions, as shown below:
 
-```
-condition1=/path/to/ctrl1.bam,/path/to/ctrl2.bam 
-condition2=/path/to/case1.bam,/path/to/case2.bam
 
+condition1=/path/to/ctrl1.bam,/path/to/ctrl2.bam 
+```
 
 
 

@@ -441,7 +441,7 @@ def Estimation_abundance(Region_Coverage, break_point):
 
 
     
-def Load_Target_Wig_files(All_Wig_files, Annotated_3UTR_file):
+def Load_Target_Wig_files(All_Sample_files, Annotated_3UTR_file):
     UTR_events_dict = {}
     All_Samples_Total_depth = []
     for line in open(Annotated_3UTR_file,'r'):
@@ -462,13 +462,16 @@ def Load_Target_Wig_files(All_Wig_files, Annotated_3UTR_file):
         if region_start + 50 < region_end:
             UTR_events_dict[fields[3]] = [fields[0],region_start,region_end,fields[-1],UTR_pos]
 
-    ##Load coverage for all samples
+    ## 加载所有样品的覆盖率
+    ## Load coverage for all samples
     All_samples_extracted_3UTR_coverage_dict = {}
-    for curr_wig_file in All_Wig_files:
+    for curr_wig_file in All_Sample_files:
+
         curr_sample_All_chroms_coverage_dict = {}
         num_line = 0
         cur_sample_total_depth = 0
         for line in open(curr_wig_file,'r'):
+
             if '#' not in line and line[0:3] == 'chr':
                 fields = line.strip('\n').split('\t')
                 chrom_name = fields[0]
@@ -485,6 +488,7 @@ def Load_Target_Wig_files(All_Wig_files, Annotated_3UTR_file):
             num_line += 1
         curr_sample_All_chroms_coverage_dict[chrom_name][1].append(0)
         All_Samples_Total_depth.append(cur_sample_total_depth)
+
         for curr_3UTR_event_id in UTR_events_dict:
             curr_3UTR_structure = UTR_events_dict[curr_3UTR_event_id]
             curr_chr = curr_3UTR_structure[0]
